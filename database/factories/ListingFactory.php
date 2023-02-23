@@ -19,7 +19,7 @@ class ListingFactory extends Factory
     {
         return [
             'title' => Title::query()->inRandomOrder()->first()->title,
-            'tags' => 'Laravel, API, Backend, Vue',
+            'tags' => 'Laravel, API, Backend, Vue, React',
             'company' => $this->faker->company(),
             'email' => $this->faker->companyEmail(),
             'website' => $this->faker->url(),
