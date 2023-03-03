@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Session;
 
 class ListingController extends Controller
 {
     public function index() {
         return view('listings.index', [
-            'listings' => Listing::latest()->filter(request(['tag', 'search']))->get()
+            'listings' => Listing::latest()->filter(request(['tag', 'search']))->paginate(6)
         ]);
     }
 
@@ -36,6 +37,16 @@ class ListingController extends Controller
             'description' => 'required'
         ]);
 
-        return redirect('/');
+        if($request->hasFile('logo')) {
+            $formInputs['logo'] = $request->file('logo')->store('logos', 'public');
+        }
+
+        Listing::create($formInputs);
+
+        
+        //Flash message
+        //Session::flash('message', 'Listed created succesfully!');
+
+        return redirect('/')->with('message', 'Listed created succesfully!');
     }
 }
