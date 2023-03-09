@@ -33,11 +33,11 @@
                             <i class="fa-solid fa-location-dot"></i> {{ $listing->location }}
                         </div>
                         <div class="border border-gray-200 w-full mb-6"></div>
-                        <div>
+                        <div class="max-w-9xl w-full">
                             <h3 class="text-3xl font-bold mb-4">
                                 Job Description
                             </h3>
-                            <div class="text-lg space-y-6 w-full">
+                            <div class="text-lg space-y-6">
                                 {{ $listing->description }}
 
                                 <a

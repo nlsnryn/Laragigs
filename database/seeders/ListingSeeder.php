@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use App\Models\Listing;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -13,7 +14,15 @@ class ListingSeeder extends Seeder
      */
     public function run(): void
     {
-        Listing::factory(6)->create();
+        $user = User::factory()->create([
+            'name' => 'Nelson Ryan',
+            'email' => 'nelson@neksjob.com',
+            'password' => bcrypt('093322')
+        ]);
+
+        Listing::factory(6)->create([
+            'user_id' => $user->id
+        ]);
 
         // Listing::created([
         //     [
